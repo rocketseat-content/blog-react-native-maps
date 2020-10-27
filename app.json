@@ -1,0 +1,12 @@
+{
+  "name": "blog-react-native-maps",
+  "displayName": "blog-react-native-maps",
+  "expo": {
+    "name": "blog-react-native-maps",
+    "slug": "blog-react-native-maps",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
