@@ -8,7 +8,7 @@ import MapView, {
 } from "react-native-maps";
 import { FontAwesome } from "@expo/vector-icons";
 import { RectButton, TextInput } from "react-native-gesture-handler";
-
+import * as Location from "expo-location";
 import styles from "./styles";
 import { fetchUserGithub, fetchLocalMapBox } from "./api";
 
@@ -36,7 +36,23 @@ export default function App() {
   const [username, setUsername] = useState("");
   const [region, setRegion] = useState<Region>();
 
-  const getCurrentPosition = () => {
+  const getCurrentPosition = async () => {
+    let { status } = await Location.requestPermissionsAsync();
+
+    if (status !== "granted") {
+      Alert.alert("Ops!", "Permissão de acesso a localização negada.");
+    }
+
+    let {
+      coords: { latitude, longitude },
+    } = await Location.getCurrentPositionAsync();
+
+    setRegion({ latitude, longitude, latitudeDelta: 100, longitudeDelta: 100 });
+  };
+
+  // ERRATA
+  // https://stackoverflow.com/questions/32106849/getcurrentposition-and-watchposition-are-deprecated-on-insecure-origins
+  const getCurrentPosition_deprecated = () => {
     try {
       navigator.geolocation.getCurrentPosition(
         (position: any) => {
