@@ -52,31 +52,31 @@ export default function App() {
 
   // ERRATA
   // https://stackoverflow.com/questions/32106849/getcurrentposition-and-watchposition-are-deprecated-on-insecure-origins
-  const getCurrentPosition_deprecated = () => {
-    try {
-      navigator.geolocation.getCurrentPosition(
-        (position: any) => {
-          console.log(position);
-          const region = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: 100,
-            longitudeDelta: 100,
-          };
-          setRegion(region);
-        },
-        (error: any) => {
-          if (error.code === 1) {
-            Alert.alert("Ei!", "Dê permissão para acessar a sua localização!");
-          } else {
-            Alert.alert("Ops x(", "Erro ao detectar a localização.");
-          }
-        }
-      );
-    } catch (e) {
-      Alert.alert(e.message || "");
-    }
-  };
+  // const getCurrentPosition_deprecated = () => {
+  //   try {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position: any) => {
+  //         console.log(position);
+  //         const region = {
+  //           latitude: position.coords.latitude,
+  //           longitude: position.coords.longitude,
+  //           latitudeDelta: 100,
+  //           longitudeDelta: 100,
+  //         };
+  //         setRegion(region);
+  //       },
+  //       (error: any) => {
+  //         if (error.code === 1) {
+  //           Alert.alert("Ei!", "Dê permissão para acessar a sua localização!");
+  //         } else {
+  //           Alert.alert("Ops x(", "Erro ao detectar a localização.");
+  //         }
+  //       }
+  //     );
+  //   } catch (e) {
+  //     Alert.alert(e.message || "");
+  //   }
+  // };
 
   useEffect(() => {
     getCurrentPosition();
